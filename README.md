@@ -25,7 +25,7 @@ MariaDB or MySQL listens to the default port number 3306.
 
 Open MariaDB console and run these SQL script to populate the database user, create database "rmit_store_db", the table "store" and populate rows in the table.
 ```
-$ mysql
+$ sudo mysql
 
 MariaDB > CREATE USER 'db_admin'@'localhost' IDENTIFIED BY 'rmit_password';
 MariaDB > GRANT ALL PRIVILEGES ON *.* TO 'db_admin'@'localhost';
@@ -39,7 +39,7 @@ MariaDB > INSERT INTO store (Name, Price, ImageUrl) VALUES ("Fairtrade Pocket Ho
 
 MariaDB > exit
 ```
-Note: Notice the "localhost" and change it accordingly!
+Note: Notice the "localhost" and change it accordingly if the database is not in the same server with Apache!
 
 ## ⚙️ 3. Install PHP and php-mysql module
 
@@ -66,7 +66,7 @@ You need to fork this Github repo first to your Github account.
 You need to install git and git clone the github repo to the directory "/var/www/html/" as it is the default root folder of the Apache web server.
 ```
 sudo yum install -y git
-git clone <your-git-repo-url> /var/www/html/
+sudo git clone <your-git-repo-url> /var/www/html/
 ```
 
 In the file index.php located in the website directory, we got this PHP script to connect to the MariaDB database.
@@ -78,14 +78,14 @@ $link = mysqli_connect(
     "rmit_store_db"
 );
 ```
-Note: Notice the "localhost" and change it accordingly!
+Note: Notice the "localhost" and change it accordingly if the database is not in the same server with Apache!
 
 ## 💻 6. Open the website
 
 Open the website via the public IP address or the domain name via the default port http 80!
 
 Behold, it's time to buy some RMIT glorious merchandise!
-<img src="https://i.imgur.com/xNHx6Ue.png">
+<img src="https://i.imgur.com/YBUd8Ol.png">
 
 Profit💸💰! Sweet and simple to deploy this website!
 
