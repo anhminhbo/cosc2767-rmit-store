@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS rmit_store_db;
+
+CREATE DATABASE rmit_store_db;
+
 USE rmit_store_db;
 
 CREATE TABLE stores (
