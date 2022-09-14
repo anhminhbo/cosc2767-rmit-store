@@ -1,0 +1,15 @@
+- hosts: prod-server
+  tasks:
+    - name: Start docker service
+      command: sudo service docker start
+
+    - name: register all docker service ids currently running
+      command: sudo docker service ls -q
+      register: dockerServiceIds
+
+    - name: Remove all current running services
+      command: "docker service rm {{dockerServiceIds.stdout}}"
+      ignore_errors: yes
+
+    - name: Create a docker swarm service based on DockerHub image
+      command: sudo docker service create --name apache-service --replicas 2 --publish published=8080,target=80 s3758780/apache-3758780:latest
