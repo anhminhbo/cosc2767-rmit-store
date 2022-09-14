@@ -8,7 +8,7 @@
       register: dockerServiceIds
 
     - name: Remove all current running services
-      command: "docker service rm {{dockerServiceIds.stdout}}"
+      command: "sudo docker service rm {{dockerServiceIds.stdout}}"
       ignore_errors: yes
 
     - name: Create a docker swarm service based on DockerHub image
