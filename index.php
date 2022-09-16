@@ -75,7 +75,7 @@
         <section class="slider_area row m0">
             <div class="slider_inner">
                 <div class="image-change">
-                    <h2 class="wow fadeInUp animated">Global University</h2>
+                    <h2 class="wow fadeInUp animated">Hello mr Tom handsome</h2>
                     <h5 class="wow fadeIn animated" data-wow-delay="0.2s">Buy at Our Store</h5>
                     <a class="learn-more wow fadeInU" data-wow-delay="0.3s" href="#item-list">Buy Now!</a>
                 </div>
@@ -92,7 +92,7 @@
               $link = mysqli_connect(
                   "rmit-store-db.ccleugydyfsn.us-east-1.rds.amazonaws.com",
                   "db_admin",
-                  "rmit_password1",
+                  "rmit_password",
                   "rmit_store_db"
               );
               if ($link) {
