@@ -75,7 +75,7 @@
         <section class="slider_area row m0">
             <div class="slider_inner">
                 <div class="image-change">
-                    <h2 class="wow fadeInUp animated">Global University</h2>
+                    <h2 class="wow fadeInUp animated">Hello mr Tom handsome</h2>
                     <h5 class="wow fadeIn animated" data-wow-delay="0.2s">Buy at Our Store</h5>
                     <a class="learn-more wow fadeInU" data-wow-delay="0.3s" href="#item-list">Buy Now!</a>
                 </div>
@@ -88,15 +88,33 @@
                 <h2>Our Store</h2>
             </div>
             <div class="row rmit-product-section">
-              <?php
+<?php
+require 'awsSDK/aws.phar';
+    $az = file_get_contents('http://169.254.169.254/latest/meta-data/placement/availability-zone');
+    $region = substr($az, 0, -1);
+
+    $ssm_client = new Aws\Ssm\SsmClient([
+        'version' => 'latest',
+        'region'  => $region
+    ]);
+
+    $result = $ssm_client->GetParametersByPath(['Path' => '/database/', 'WithDecryption' => true]);
+
+    foreach($result['Parameters'] as $p) {
+        $values[$p['Name']] = $p['Value'];
+    }
+    $db_url = $values['/database/url'];
+    $db_name = $values['/database/dbName'];
+    $db_user = $values['/database/username'];
+    $db_password = $values['/database/password'];
               $link = mysqli_connect(
-                  "localhost",
-                  "db_admin",
-                  "rmit_password",
-                  "rmit_store_db"
+                  $db_url,
+                  $db_user,
+                  $db_password,
+                  $db_name
               );
               if ($link) {
-                  $res = mysqli_query($link, "select * from store;");
+                  $res = mysqli_query($link, "select * from stores;");
                   while ($row = mysqli_fetch_assoc($res)) { ?>
 
 
